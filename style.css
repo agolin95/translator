@@ -1,25 +1,38 @@
-body,
-textarea {
+body {
     background: #111;
     color: white;
     font-family: "Raleway", sans-serif;
     text-align: center;
+    padding-top: 30px;
 }
 
-textarea {
+.flex-item {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    margin: auto;
+}
+
+.textarea {
     background: #222;
-    border: #222;
     font-family: "Kode Mono", monospace;
     border-radius: 10px;
-    width: 80vw;
-    max-width: 1000px;
-    min-width: 300px;
-    min-height: 200px;
-    padding: 20px;
-    resize: none;
+    width: 60vw;
+    max-width: 800px;
+    padding: 50px;
+    margin: 15px;
+    margin-bottom: 30px;
+    caret-color: transparent;
 }
 
-h1,
-h2 {
-    margin-top: 50px;
+.placeholder {
+    color: gray;
+}
+
+@media only screen and (min-width: 1000px) {
+    .textarea {
+        width: 35vw;
+    }
 }
