@@ -5,7 +5,7 @@ $(function () {
     });
 
     $("#english").keyup(function () {
-        const englishMessage = $(this).text();
+        const englishMessage = $(this).text().trim();
         let morseMessage = "";
         for (let i = 0; i < englishMessage.length; i++) {
             const englishLetter = englishMessage[i].toUpperCase();
@@ -18,7 +18,7 @@ $(function () {
     });
 
     $("#morse").keyup(function () {
-        const morseMessage = $(this).text();
+        const morseMessage = $(this).text().trim();
         const morseWords = morseMessage.split("/");
         let englishMessage = "";
         for (let i = 0; i < morseWords.length; i++) {
@@ -42,15 +42,15 @@ $(function () {
 });
 
 function speak() {
-    const englishText = $("#english").text();
-    const morseText = $("#morse").text();
+    const englishText = $("#english").text().trim();
+    const morseText = $("#morse").text().trim();
     const utterance = new SpeechSynthesisUtterance(englishText);
     utterance.onend = function (event) { playMorse(morseText); }
     window.speechSynthesis.speak(utterance);
 }
 
 function playMorse(morse) {
-    dotlength = 120;
+    dotlength = 50;
     var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     var oscillator = audioCtx.createOscillator();
     var gainNode = audioCtx.createGain();
@@ -68,22 +68,23 @@ function playMorse(morse) {
             break;
         case "-":
             gainNode.gain.value = 0.1;
-            duration = dotlength * 2;
+            duration = dotlength * 3;
             break;
         case " ":
-            duration = dotlength * 2;
+            duration = dotlength * 3;
             break;
         case "/":
-            duration = dotlength * 3;
+            duration = dotlength * 5;
             break;
     }
     setTimeout(() => {
-        if (morse.length > 1) {
-            oscillator.stop();
-            playMorse(morse.substring(1))
-        }
-    }, duration);
-
+        oscillator.stop();
+        setTimeout(() => {
+            if (morse.length > 1) {
+                playMorse(morse.substring(1))
+            }
+        }, dotlength * 1.2); // Constant space between dots and dashes
+    }, duration); // Duration of tone or silence
 }
 
 function getKeyByValue(object, value) {
@@ -145,5 +146,6 @@ const morseDict = {
     "+": ".-.-.",
     '"': ".-..-.",
     "?": "..--..",
-    "/": "-..-."
+    "/": "-..-.",
+    "\n": "\n"
 }
