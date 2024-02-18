@@ -9,7 +9,7 @@
     <meta property="og:url" content="https://alexandergolin.com/morse/">
     <meta property="og:title" content="Alexander Golin | Morse Code Translator">
     <meta property="og:description"
-        content="A simple morse code translator that bidirectionally converts between morse and english.">
+        content="A simple translator that omnidirectionally converts between English, Morse, and ASCII.">
     <meta property="og:image" content="https://alexandergolin.com/morse/splash.png">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,7 +23,7 @@
 </head>
 
 <body>
-    <h2>Bidirectionally translate between English and Morse</h2>
+    <h2>Omnidirectionally translate between English, Morse, and ASCII</h2>
     <div class="flex-container">
         <div class="flex-item">
             <h1>English</h1>
@@ -37,13 +37,13 @@
             </div>
             <div class="play-button" id="play-morse">Play Morse</div>
         </div>
-        <!-- <div class="flex-item">
+        <div class="flex-item">
             <h1>ASCII</h1>
             <div class="textarea placeholder" id="ascii" contenteditable>
                 83 79 83 33
             </div>
             <div class="play-button" id="play-ascii">Play ASCII</div>
-        </div> -->
+        </div>
     </div>
 
     <script src="js/morse-dict.js"></script>
@@ -51,6 +51,7 @@
     <script src="js/main.js"></script>
     <script src="js/english.js"></script>
     <script src="js/morse.js"></script>
+    <script src="js/ascii.js"></script>
 </body>
 
 </html>

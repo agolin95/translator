@@ -1,28 +1,35 @@
 $(function () {
     $("#morse").keyup(function () {
-        const morseMessage = $(this).text().trim();
-        const morseWords = morseMessage.split("/");
-        let englishMessage = "";
-        for (let i = 0; i < morseWords.length; i++) {
-            const morseLetters = morseWords[i].split(" ");
-            let englishWord = "";
-            for (let j = 0; j < morseLetters.length; j++) {
-                const morseLetter = morseLetters[j];
-                const englishLetter = getKeyByValue(morseDict, morseLetter);
-                if (englishLetter != undefined) {
-                    englishWord += englishLetter;
-                }
-            }
-            englishMessage += englishWord + " ";
-        }
-        $("#english").text(englishMessage);
+        const morseMessage = $(this).text();
+        const englishMessage = morseToEnglish(morseMessage);
+        const asciiMessage = englishToAscii(englishMessage);
     });
 
     $("#play-morse").click(function () {
-        const morseText = $("#morse").text().trim();
+        const morseText = $("#morse").text();
         playMorse(morseText);
     });
 });
+
+function morseToEnglish(morseMessage) {
+    const morseWords = morseMessage.split("/");
+    let englishMessage = "";
+    for (let i = 0; i < morseWords.length; i++) {
+        const morseLetters = morseWords[i].split(" ");
+        let englishWord = "";
+        for (let j = 0; j < morseLetters.length; j++) {
+            const morseLetter = morseLetters[j];
+            const englishLetter = getKeyByValue(morseDict, morseLetter);
+            if (englishLetter != undefined) {
+                englishWord += englishLetter;
+            }
+        }
+        englishMessage += englishWord + " ";
+    }
+    englishMessage = englishMessage.substring(0, englishMessage.length - 1);
+    $("#english").text(englishMessage);
+    return englishMessage;
+}
 
 function playMorse(morse) {
     dotlength = 50;

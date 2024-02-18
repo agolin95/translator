@@ -1,48 +1,38 @@
 $(function () {
     $("#english").keyup(function () {
-        const englishMessage = $(this).text().trim();
-        toMorse(englishMessage);
-        toAscii(englishMessage);
+        const englishMessage = $(this).text();
+        englishToMorse(englishMessage);
+        englishToAscii(englishMessage);
     });
 
     $("#speak").click(function () {
-        speak($("#english").text().trim());
-    });
-
-    $("#play-ascii").click(function () {
-        speak($("#ascii").text().trim());
+        speak($("#english").text());
     });
 });
 
-function toMorse(text) {
+function englishToMorse(englishMessage) {
     let morseMessage = "";
-    for (let i = 0; i < text.length; i++) {
-        const letter = text[i].toUpperCase();
-        const morseLetter = morseDict[letter];
+    for (let i = 0; i < englishMessage.length; i++) {
+        const englishLetter = englishMessage[i].toUpperCase();
+        const morseLetter = morseDict[englishLetter];
         if (morseLetter != undefined) {
             morseMessage += morseLetter + " ";
         }
     }
+    morseMessage = morseMessage.substring(0, morseMessage.length - 1);
     $("#morse").text(morseMessage);
+    return morseMessage;
 }
 
-function toAscii(text) {
+function englishToAscii(englishMessage) {
     let asciiMessage = "";
-    for (let i = 0; i < text.length; i++) {
-        const letter = text[i];
-        const asciiLetter = asciiDict[letter];
+    for (let i = 0; i < englishMessage.length; i++) {
+        const englishLetter = englishMessage[i];
+        const asciiLetter = asciiDict[englishLetter];
         if (asciiLetter != undefined) {
             asciiMessage += asciiLetter + " ";
         }
     }
     $("#ascii").text(asciiMessage);
-}
-
-function speak(text) {
-    const synth = window.speechSynthesis;
-    const utterance = new SpeechSynthesisUtterance(text);
-    if (synth.speaking) {
-        synth.cancel();
-    }
-    synth.speak(utterance);
+    return asciiMessage;
 }
