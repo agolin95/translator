@@ -40,6 +40,7 @@ body {
     -ms-transition: background-color 300ms linear;
     transition: background-color 300ms linear;
     cursor: pointer;
+    margin-bottom: 30px;
 }
 
 .play-button:hover {
