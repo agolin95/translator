@@ -35,7 +35,53 @@ $(function () {
         }
         $("#english").text(englishMessage);
     });
+
+    $(".textarea").on("focusout", function () {
+        speak();
+    });
 });
+
+function speak() {
+    const englishText = $("#english").text();
+    const morseText = $("#morse").text();
+    const utterance = new SpeechSynthesisUtterance(englishText);
+    utterance.onend = function (event) { playMorse(morseText); }
+    window.speechSynthesis.speak(utterance);
+}
+
+function playMorse(morse) {
+    dotlength = 50;
+    var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    var oscillator = audioCtx.createOscillator();
+    var gainNode = audioCtx.createGain();
+    oscillator.connect(gainNode);
+    gainNode.connect(audioCtx.destination);
+    gainNode.gain.value = 0;
+    oscillator.type = 'sine';
+    oscillator.frequency.value = 440;
+    oscillator.start();
+    let duration = 0;
+    console.log(morse[0])
+    switch (morse[0]) {
+        case ".":
+            gainNode.gain.value = 0.1;
+            duration = 2000;
+        case "-":
+            gainNode.gain.value = 0.1;
+            duration = dotlength * 5;
+        case " ":
+            duration = dotlength * 2;
+        case "/":
+            duration = dotlength * 5;
+    }
+    setTimeout(() => {
+        if (morse.length > 1) {
+            oscillator.stop();
+            playMorse(morse.substring(1))
+        }
+    }, duration);
+
+}
 
 function getKeyByValue(object, value) {
     return Object.keys(object).find(key =>
