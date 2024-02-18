@@ -1,12 +1,13 @@
 $(function () {
     $("#english").keyup(function () {
         const englishMessage = $(this).text();
-        englishToMorse(englishMessage);
-        englishToAscii(englishMessage);
+        const morseMessage = englishToMorse(englishMessage);
+        const asciiMessage = englishToAscii(englishMessage);
+        const binaryMessage = asciiToBinary(asciiMessage);
     });
 
-    $("#speak").click(function () {
-        speak($("#english").text());
+    $("#play-english").click(function () {
+        speak($("#english").text().trim());
     });
 });
 
@@ -33,6 +34,7 @@ function englishToAscii(englishMessage) {
             asciiMessage += asciiLetter + " ";
         }
     }
+    asciiMessage = asciiMessage.substring(0, asciiMessage.length - 1);
     $("#ascii").text(asciiMessage);
     return asciiMessage;
 }

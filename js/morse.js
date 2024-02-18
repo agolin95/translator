@@ -3,10 +3,11 @@ $(function () {
         const morseMessage = $(this).text();
         const englishMessage = morseToEnglish(morseMessage);
         const asciiMessage = englishToAscii(englishMessage);
+        const binaryMessage = asciiToBinary(asciiMessage);
     });
 
     $("#play-morse").click(function () {
-        const morseText = $("#morse").text();
+        const morseText = $("#morse").text().trim();
         playMorse(morseText);
     });
 });
