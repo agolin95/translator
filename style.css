@@ -13,6 +13,7 @@ body {
     text-align: center;
     flex-direction: column;
     margin: auto;
+    position: relative;
 }
 
 .textarea {
@@ -32,15 +33,15 @@ body {
 
 .play-button {
     border: white 1px solid;
-    width: 200px;
-    margin: auto;
     border-radius: 10px;
     padding: 20px;
     -webkit-transition: background-color 300ms linear;
     -ms-transition: background-color 300ms linear;
     transition: background-color 300ms linear;
     cursor: pointer;
-    margin-bottom: 30px;
+    position: absolute;
+    top: 96px;
+    left: 16px;
 }
 
 .play-button:hover {
