@@ -1,16 +1,18 @@
 $(function () {
     $(".placeholder").click(function () {
-        $(".placeholder").text("");
+        $(".placeholder").text("    ");
         $(".placeholder").removeClass("placeholder");
     });
 
     $("#english").keyup(function () {
         const englishMessage = $(this).text();
-        console.log(englishMessage);
         let morseMessage = "";
         for (let i = 0; i < englishMessage.length; i++) {
-            englishLetter = englishMessage[i].toUpperCase();
-            morseMessage += morseDict[englishLetter] + " ";
+            const englishLetter = englishMessage[i].toUpperCase();
+            const morseLetter = morseDict[englishLetter];
+            if (morseLetter != undefined) {
+                morseMessage += morseLetter + " ";
+            }
         }
         $("#morse").text(morseMessage);
     });
