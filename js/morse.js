@@ -1,22 +1,4 @@
 $(function () {
-    $(".placeholder").click(function () {
-        $(".placeholder").text("    ");
-        $(".placeholder").removeClass("placeholder");
-    });
-
-    $("#english").keyup(function () {
-        const englishMessage = $(this).text().trim();
-        let morseMessage = "";
-        for (let i = 0; i < englishMessage.length; i++) {
-            const englishLetter = englishMessage[i].toUpperCase();
-            const morseLetter = morseDict[englishLetter];
-            if (morseLetter != undefined) {
-                morseMessage += morseLetter + " ";
-            }
-        }
-        $("#morse").text(morseMessage);
-    });
-
     $("#morse").keyup(function () {
         const morseMessage = $(this).text().trim();
         const morseWords = morseMessage.split("/");
@@ -36,25 +18,11 @@ $(function () {
         $("#english").text(englishMessage);
     });
 
-    $("#speak").click(function () {
-        speak();
-    });
-
-    $("#playMorse").click(function () {
+    $("#play-morse").click(function () {
         const morseText = $("#morse").text().trim();
         playMorse(morseText);
     });
 });
-
-function speak() {
-    const synth = window.speechSynthesis;
-    const englishText = $("#english").text().trim();
-    const utterance = new SpeechSynthesisUtterance(englishText);
-    if (synth.speaking) {
-        synth.cancel();
-    }
-    synth.speak(utterance);
-}
 
 function playMorse(morse) {
     dotlength = 50;
@@ -97,67 +65,4 @@ function createAudioNodes() {
     oscillator.type = 'sine';
     oscillator.frequency.value = 440;
     return { "osc": oscillator, "gain": gainNode.gain };
-}
-
-function getKeyByValue(object, value) {
-    return Object.keys(object).find(key =>
-        object[key] === value);
-}
-
-const morseDict = {
-    "A": ".-",
-    "B": "-...",
-    "C": "-.-.",
-    "D": "-..",
-    "E": ".",
-    "F": "..-.",
-    "G": "--.",
-    "H": "....",
-    "I": "..",
-    "J": ".---",
-    "K": "-.-",
-    "L": ".-..",
-    "M": "--",
-    "N": "-.",
-    "O": "---",
-    "P": ".--.",
-    "Q": "--.-",
-    "R": ".-.",
-    "S": "...",
-    "T": "-",
-    "U": "..-",
-    "V": "...-",
-    "W": ".--",
-    "X": "-..-",
-    "Y": "-.--",
-    "Z": "--..",
-    " ": "/",
-    "0": "-----",
-    "1": ".----",
-    "2": "..---",
-    "3": "...--",
-    "4": "....-",
-    "5": ".....",
-    "6": "-....",
-    "7": "--...",
-    "8": "---..",
-    "9": "----.",
-    "&": ".-...",
-    "'": ".----.",
-    "@": ".--.-.",
-    ")": "-.--.-",
-    "(": "-.--.",
-    ":": "---...",
-    ",": "--..--",
-    "=": "-...-",
-    "!": "-.-.--",
-    ".": ".-.-.-",
-    "-": "-....-",
-    "*": "-..-",
-    "%": "----- -..-. -----",
-    "+": ".-.-.",
-    '"': ".-..-.",
-    "?": "..--..",
-    "/": "-..-.",
-    "\n": "\n"
 }
