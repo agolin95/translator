@@ -25,7 +25,7 @@ $(function () {
             const morseLetters = morseWords[i].split(" ");
             let englishWord = "";
             for (let j = 0; j < morseLetters.length; j++) {
-                const morseLetter = morseLetters[j].replace(" ", "");
+                const morseLetter = morseLetters[j];
                 const englishLetter = getKeyByValue(morseDict, morseLetter);
                 if (englishLetter != undefined) {
                     englishWord += englishLetter;
@@ -50,7 +50,7 @@ function speak() {
 }
 
 function playMorse(morse) {
-    dotlength = 50;
+    dotlength = 120;
     var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     var oscillator = audioCtx.createOscillator();
     var gainNode = audioCtx.createGain();
@@ -61,18 +61,21 @@ function playMorse(morse) {
     oscillator.frequency.value = 440;
     oscillator.start();
     let duration = 0;
-    console.log(morse[0])
     switch (morse[0]) {
         case ".":
             gainNode.gain.value = 0.1;
-            duration = 2000;
+            duration = dotlength;
+            break;
         case "-":
             gainNode.gain.value = 0.1;
-            duration = dotlength * 5;
+            duration = dotlength * 2;
+            break;
         case " ":
             duration = dotlength * 2;
+            break;
         case "/":
-            duration = dotlength * 5;
+            duration = dotlength * 3;
+            break;
     }
     setTimeout(() => {
         if (morse.length > 1) {
