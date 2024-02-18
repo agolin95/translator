@@ -39,6 +39,7 @@ body {
     -webkit-transition: background-color 300ms linear;
     -ms-transition: background-color 300ms linear;
     transition: background-color 300ms linear;
+    cursor: pointer;
 }
 
 #speak:hover {
