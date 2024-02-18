@@ -30,7 +30,7 @@ body {
     color: gray;
 }
 
-#speak {
+.play-button {
     border: white 1px solid;
     width: 200px;
     margin: auto;
@@ -42,7 +42,7 @@ body {
     cursor: pointer;
 }
 
-#speak:hover {
+.play-button:hover {
     background: black;
 }
 
