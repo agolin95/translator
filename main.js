@@ -36,7 +36,7 @@ $(function () {
         $("#english").text(englishMessage);
     });
 
-    $(".textarea").on("focusout", function () {
+    $("#speak").click(function () {
         speak();
     });
 });

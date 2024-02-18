@@ -30,6 +30,21 @@ body {
     color: gray;
 }
 
+#speak {
+    border: white 1px solid;
+    width: 200px;
+    margin: auto;
+    border-radius: 10px;
+    padding: 20px;
+    -webkit-transition: background-color 300ms linear;
+    -ms-transition: background-color 300ms linear;
+    transition: background-color 300ms linear;
+}
+
+#speak:hover {
+    background: black;
+}
+
 @media only screen and (min-width: 1000px) {
     .textarea {
         width: 35vw;
