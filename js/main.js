@@ -18,14 +18,10 @@ function speak(text) {
     utterance.volume = 0.5;
     let voices = synth.getVoices();
     for (let i = 0; i < voices.length; i++) {
-        console.log(voices[i].name)
         if (voices[i].name == "Junior") {
             utterance.voice = voices[i];
         }
     }
-
-    if (synth.speaking) {
-        synth.cancel();
-    }
+    if (synth.speaking) { synth.cancel(); }
     synth.speak(utterance);
 }

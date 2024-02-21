@@ -17,7 +17,7 @@ function binaryToAscii(binaryMessage) {
     for (let i = 0; i < binaryLetters.length; i++) {
         const binaryLetter = binaryLetters[i];
         const asciiLetter = parseInt(binaryLetter, 2);
-        if (asciiLetter != undefined) {
+        if (asciiLetter != undefined && binaryLetter != "") {
             asciiMessage += asciiLetter + " ";
         }
     }

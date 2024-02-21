@@ -31,7 +31,7 @@ function asciiToBinary(asciiMessage) {
     for (let i = 0; i < asciiLetters.length; i++) {
         const asciiLetter = asciiLetters[i];
         const binaryLetter = Number(asciiLetter).toString(2);
-        if (binaryLetter != undefined) {
+        if (binaryLetter != undefined && binaryLetter != 0) {
             binaryMessage += binaryLetter + " ";
         }
     }
