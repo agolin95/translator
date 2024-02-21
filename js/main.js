@@ -14,7 +14,7 @@ function speak(text) {
     const synth = window.speechSynthesis;
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = 'en-US';
-    utterance.rate = 1.2;
+    utterance.rate = 1;
     utterance.volume = 0.5;
     let voices = synth.getVoices();
     for (let i = 0; i < voices.length; i++) {
