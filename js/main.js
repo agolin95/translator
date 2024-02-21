@@ -13,6 +13,17 @@ function getKeyByValue(object, value) {
 function speak(text) {
     const synth = window.speechSynthesis;
     const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'en-US';
+    utterance.rate = 1.2;
+    utterance.volume = 0.5;
+    let voices = synth.getVoices();
+    for (let i = 0; i < voices.length; i++) {
+        console.log(voices[i].name)
+        if (voices[i].name == "Junior") {
+            utterance.voice = voices[i];
+        }
+    }
+
     if (synth.speaking) {
         synth.cancel();
     }
