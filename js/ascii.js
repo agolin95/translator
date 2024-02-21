@@ -7,7 +7,7 @@ $(function () {
     });
 
     $("#play-ascii").click(function () {
-        speak($("#ascii").text().trim());
+        speak($("#ascii").text().trim(), 1.2);
     });
 });
 
@@ -30,8 +30,12 @@ function asciiToBinary(asciiMessage) {
     let binaryMessage = "";
     for (let i = 0; i < asciiLetters.length; i++) {
         const asciiLetter = asciiLetters[i];
-        const binaryLetter = Number(asciiLetter).toString(2);
+        let binaryLetter = Number(asciiLetter).toString(2);
         if (binaryLetter != undefined && binaryLetter != 0) {
+            const bitLength = binaryLetter.length;
+            for (let j = 0; j < 8 - bitLength; j++) {
+                binaryLetter = "0" + binaryLetter;
+            }
             binaryMessage += binaryLetter + " ";
         }
     }

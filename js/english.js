@@ -7,7 +7,7 @@ $(function () {
     });
 
     $("#play-english").click(function () {
-        speak($("#english").text().trim());
+        speak($("#english").text().trim(), 1);
     });
 });
 

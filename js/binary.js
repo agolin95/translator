@@ -7,7 +7,7 @@ $(function () {
     });
 
     $("#play-binary").click(function () {
-        speak($("#binary").text().trim());
+        speak($("#binary").text().trim(), 1.2);
     });
 });
 
