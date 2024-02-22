@@ -9,9 +9,6 @@ $(function () {
     $("#play-english").click(function () {
         speak($("#english").text().trim(), 1);
     });
-    $("#play-english").on("touchstart", function () {
-        speak($("#english").text().trim(), 1);
-    });
 });
 
 function englishToMorse(englishMessage) {
