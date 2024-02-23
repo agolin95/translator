@@ -30,6 +30,7 @@ function speak(text, rate) {
 
 function setVoice(synth, utterance) {
     let voices = synth.getVoices();
+    alert(voices.length);
     for (let i = 0; i < voices.length; i++) {
         if (voices[i].name == "Junior") {
             utterance.voice = voices[i];
