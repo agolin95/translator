@@ -33,17 +33,20 @@ function speak(text, rate) {
 
 
 function populateVoiceList() {
+    const optionDOM = `<option>No Voices Available 🥺</option>`;
     if (!("speechSynthesis" in window)) {
-        const optionDOM = `<option>No Voices Available 🥺</option>`;
         $("#voice-select").append(optionDOM);
         return;
     }
     const voices = window.speechSynthesis.getVoices();
+    if (voices.length == 0) {
+        $("#voice-select").append(optionDOM);
+        return;
+    }
     for (let i = 0; i < voices.length; i++) {
         if (voices[i].lang == "en-US") {
             $("#voice-select").append(`<option>${voices[i].name}</option>`);
             allVoices[voices[i].name] = voices[i];
         }
     }
-
 }
