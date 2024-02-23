@@ -17,6 +17,7 @@ function speak(text, rate) {
         utterance.lang = 'en-US';
         utterance.rate = rate;
         utterance.volume = 0.5;
+        alert("hi");
         let voices = synth.getVoices();
         for (let i = 0; i < voices.length; i++) {
             if (voices[i].name == "Junior") {
