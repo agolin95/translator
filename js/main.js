@@ -12,6 +12,7 @@ function getKeyByValue(object, value) {
 
 function speak(text, rate) {
     if ('speechSynthesis' in window) {
+        alert(text);
         const synth = window.speechSynthesis;
         const utterance = new SpeechSynthesisUtterance(text);
         utterance.lang = 'en-US';
