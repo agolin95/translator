@@ -1,8 +1,13 @@
+let allVoices = {};
+
 $(function () {
     $(".placeholder").click(function () {
         $(".placeholder").text("    ");
         $(".placeholder").removeClass("placeholder");
     });
+
+    populateVoiceList();
+    speechSynthesis.onvoiceschanged = populateVoiceList;
 });
 
 function getKeyByValue(object, value) {
@@ -12,29 +17,33 @@ function getKeyByValue(object, value) {
 
 function speak(text, rate) {
     if ('speechSynthesis' in window) {
-        const synth = window.speechSynthesis;
         const utterance = new SpeechSynthesisUtterance(text);
         utterance.lang = 'en-US';
         utterance.rate = rate;
         utterance.volume = 0.5;
+        utterance.voice = allVoices[$("#voice-select").val()];
 
-        setVoice(synth, utterance);
-        synth.addEventListener("voiceschanged", () => {
-            setVoice(synth, utterance);
-        })
+        const synth = window.speechSynthesis;
+        synth.speaking ? synth.cancel() : synth.speak(utterance);
     }
     else {
         alert("Speech Synthesis Unavailable.")
     }
 }
 
-function setVoice(synth, utterance) {
-    let voices = synth.getVoices();
-    alert(voices.length);
+
+function populateVoiceList() {
+    if (!("speechSynthesis" in window)) {
+        const optionDOM = `<option>No Voices Available 🥺</option>`;
+        $("#voice-select").append(optionDOM);
+        return;
+    }
+    const voices = window.speechSynthesis.getVoices();
     for (let i = 0; i < voices.length; i++) {
-        if (voices[i].name == "Junior") {
-            utterance.voice = voices[i];
-            synth.speaking ? synth.cancel() : synth.speak(utterance);
+        if (voices[i].lang == "en-US") {
+            $("#voice-select").append(`<option>${voices[i].name}</option>`);
+            allVoices[voices[i].name] = voices[i];
         }
     }
+
 }

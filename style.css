@@ -6,6 +6,15 @@ body {
     padding-top: 30px;
 }
 
+#voice-select {
+    min-width: 200px;
+    background: #222;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    padding: 5px;
+}
+
 .flex-item {
     display: inline-flex;
     justify-content: center;
