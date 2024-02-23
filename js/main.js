@@ -23,6 +23,7 @@ function speak(text, rate) {
                 utterance.voice = voices[i];
             }
         }
+        alert(utterance.voice.name);
         if (synth.speaking) { synth.cancel(); }
         synth.speak(utterance);
     }
