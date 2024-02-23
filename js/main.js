@@ -17,18 +17,23 @@ function speak(text, rate) {
         utterance.lang = 'en-US';
         utterance.rate = rate;
         utterance.volume = 0.5;
-        let voices = synth.getVoices();
-        alert(voices.length);
-        for (let i = 0; i < voices.length; i++) {
-            if (voices[i].name == "Junior") {
-                utterance.voice = voices[i];
-            }
-        }
-        alert(utterance.voice.name);
-        if (synth.speaking) { synth.cancel(); }
-        synth.speak(utterance);
+
+        setVoice(synth, utterance);
+        synth.addEventListener("voiceschanged", () => {
+            setVoice(synth, utterance);
+        })
     }
     else {
         alert("Speech Synthesis Unavailable.")
+    }
+}
+
+function setVoice(synth, utterance) {
+    let voices = synth.getVoices();
+    for (let i = 0; i < voices.length; i++) {
+        if (voices[i].name == "Junior") {
+            utterance.voice = voices[i];
+            synth.speaking ? synth.cancel() : synth.speak(utterance);
+        }
     }
 }
