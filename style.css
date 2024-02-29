@@ -29,11 +29,13 @@ body {
     background: #222;
     font-family: "Kode Mono", monospace;
     border-radius: 10px;
-    width: 60vw;
-    max-width: 800px;
-    padding: 50px;
-    margin: 15px;
-    margin-bottom: 30px;
+    width: 35vw;
+    min-width: 300px;
+    /* max-width: 300px; */
+    padding: 5vw;
+    margin: 0 15px 0 15px;
+    max-height: 200px;
+    overflow-y: scroll;
 }
 
 .placeholder {
@@ -50,8 +52,17 @@ body {
     font-size: 30px;
 }
 
+h1,
+.play-button {
+    margin: 25px 10px 15px 10px;
+}
+
 .play-button:hover {
     background: black;
+}
+
+.translation-header {
+    display: flex;
 }
 
 h1,
@@ -69,10 +80,4 @@ h3,
     -ms-user-select: none;
     /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
     user-select: none;
-}
-
-@media only screen and (min-width: 1000px) {
-    .textarea {
-        width: 35vw;
-    }
 }
