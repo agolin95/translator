@@ -4,6 +4,12 @@ body {
     font-family: "Raleway", sans-serif;
     text-align: center;
     padding-top: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+h3 {
+    padding: 20px;
 }
 
 #voice-select {
@@ -29,11 +35,9 @@ body {
     background: #222;
     font-family: "Kode Mono", monospace;
     border-radius: 10px;
-    width: 35vw;
-    min-width: 300px;
-    /* max-width: 300px; */
+    width: 75vw;
     padding: 5vw;
-    margin: 0 15px 0 15px;
+    margin: auto;
     max-height: 200px;
     overflow-y: scroll;
 }
@@ -80,4 +84,11 @@ h3,
     -ms-user-select: none;
     /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
     user-select: none;
+}
+
+@media screen and (min-width: 600px) {
+    .textarea {
+        width: 35vw;
+        margin: 0 10px 0 10px;
+    }
 }
