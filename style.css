@@ -61,10 +61,6 @@ h1,
     margin: 25px 10px 15px 10px;
 }
 
-.play-button:hover {
-    background: black;
-}
-
 .translation-header {
     display: flex;
 }
